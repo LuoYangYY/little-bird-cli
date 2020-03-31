@@ -66,6 +66,15 @@ let actionMap = {
     build: {
         description: '服务端项目打包',
         usages: ['little-bird-cli build', 'lb-cli build', 'lbc build'],
+        options: [{
+            flags: '-u --username <port>',
+            description: 'github用户名',
+            defaultValue: ''
+        }, {
+            flags: '-t --token <port>',
+            description: 'github创建的token',
+            defaultValue: ''
+        }],
         alias: 'b'
     }
 
@@ -88,7 +97,7 @@ Object.keys(actionMap).forEach(action => {
                 (0, _create2.default)(...process.argv.slice(3));
                 break;
             case 'init':
-                (0, _init2.default)();
+                (0, _init2.default)(_commander2.default.username, _commander2.default.token);
                 break;
             case 'dev':
                 (0, _dev2.default)(_commander2.default.port);

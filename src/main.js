@@ -57,6 +57,18 @@ let actionMap = {
             'lb-cli build',
             'lbc build'
         ],
+        options: [
+            {
+                flags: '-u --username <port>',
+                description: 'github用户名',
+                defaultValue: ''
+            },
+            {
+                flags: '-t --token <port>',
+                description: 'github创建的token',
+                defaultValue: ''
+            }
+        ],
         alias: 'b'
     }
 }
@@ -82,7 +94,7 @@ Object.keys(actionMap).forEach(action => {
                     create(...process.argv.slice(3));
                     break;
                 case 'init':
-                    init();
+                    init(program.username, program.token);
                     break;
                 case 'dev':
                     dev(program.port);

@@ -17,8 +17,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 const config = require('./webpack.build.js');
 
 let build = () => {
-    (0, _webpack2.default)(config, () => {
-        console.log(_logSymbols2.default.success, _chalk2.default.green('打包完成'));
+    (0, _webpack2.default)(config, error => {
+        if (error !== null) {
+            console.log(_logSymbols2.default.error, _chalk2.default.red(error));
+        } else {
+            console.log(_logSymbols2.default.success, _chalk2.default.green('打包完成'));
+        }
         process.exit(1);
     });
 };

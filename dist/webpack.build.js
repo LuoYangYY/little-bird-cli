@@ -2,27 +2,15 @@
 
 const VueLoaderPlugin = require('vue-loader/lib/plugin'); //引入vue-loader库
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
+const path = require('path');
 module.exports = {
-    mode: 'development', // production
-    watch: true,
-    watchOptions: {
-        // 不监听的文件或文件夹，支持正则匹配
-        // 默认为空
-        ignored: /node_modules/,
-        // 监听到变化发生后会等300ms再去执行动作，防止文件更新太快导致重新编译频率太高
-        // 默认为 300ms
-        aggregateTimeout: 300,
-        // 判断文件是否发生变化是通过不停的去询问系统指定文件有没有变化实现的
-        // 默认每隔1000毫秒询问一次
-        poll: 1000
-    },
+    mode: 'production', // production
     entry: './src/index.ts', // 入口文件
     output: {
-        publicPath: '/dist/',
-        filename: '[name].[hash].js'
+        filename: '[name].[hash].js',
+        path: process.cwd() + '/dist',
+        publicPath: '/'
     },
-    devtool: 'cheap-module-eval-source-map', //不包含列信息，同时 loader 的 sourcemap 也被简化为只包含对应行的
     module: {
         rules: [{
             test: /\.vue$/,
